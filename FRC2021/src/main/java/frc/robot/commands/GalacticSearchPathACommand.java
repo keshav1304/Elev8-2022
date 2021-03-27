@@ -15,15 +15,15 @@ public class GalacticSearchPathACommand extends SequentialCommandGroup {
   /** Creates a new PathACommand. */
   public GalacticSearchPathACommand(DriveSubsystem driveSubsystem) {
     List<double[]> coordinates = new ArrayList<double[]>();
-    if(SmartDashboard.getNumber("Radius",1)>Constants.radiusThreshold)
-    {
+
+    if(SmartDashboard.getNumber("Radius", 1) > Constants.radiusThreshold) {
       // AR
       coordinates.add(new double[]{0d, 3d});
       coordinates.add(new double[]{1d, 5d});
       coordinates.add(new double[]{-2d, 6d});
       coordinates.add(new double[]{0d, 11.3d});
     }
-    else{
+    else {
       // AB
       coordinates.add(new double[]{0d, 3d});
       coordinates.add(new double[]{2d, 6d});

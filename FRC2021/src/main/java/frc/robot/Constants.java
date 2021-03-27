@@ -17,30 +17,32 @@ import java.util.*;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
-    public static final int FR_port = 2;
-    public static final int FL_port = 1;
+    
+    // Motor Ports
+    public static final int FR_port = 3;
+    public static final int FL_port = 2;
     public static final int BR_port = 4; 
-    public static final int BL_port = 3;
-    public static final int shooter_port = 5;
+    public static final int BL_port = 1;
+    public static final int intakePort = 5;
 
+    // General Constants
     public static double maxSpeed = 0.5d;
     public static double minSpeed = 0.12d;
     public static double deadband = 0.05d;
 
-    // Sensors
+    // Scale Values
     public static double encoderScale = 0.001425d;
     public static double navxScale = 1.1d;
     public static double cameraScale = 0.00025d;
     public static double rightScale = 0.4d;
     public static double radiusScale = 5.0d;
-    public static double radiusThreshold = 54.0d;
-
-    // public static final double T = 20 * Math.pow(10, -3);
-    public static final double G = 9.81d;
-    public static final double FIELD = 0.762d;
     public static double kPTurn = 0.0085;
     public static double kPDist = 0.21;
+
+    // Other Stuff
+    public static final double G = 9.81d;
+    public static final double FIELD = 0.762d;
+    public static double radiusThreshold = 54.0d;
     public static final double CAM_WIDTH = 854;
     public static final double MAX_RADIUS = 100;
 }

@@ -13,8 +13,6 @@ import frc.robot.subsystems.DriveSubsystem;
 public class AutoNavPathB extends SequentialCommandGroup {
   /** Creates a new AutoNavPathB. */
   public AutoNavPathB(DriveSubsystem driveSubsystem) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
     double radius = 1.3;
     addCommands(new SwerveCoordinateCommand(driveSubsystem, new ArrayList<double[]>(Arrays.asList(new double[]{-1d, 3d}))));
     addCommands(new SwerveCoordinateCommand(driveSubsystem,new ArrayList<double[]>(Arrays.asList(new double[]{3d, 2d}))));
@@ -24,12 +22,10 @@ public class AutoNavPathB extends SequentialCommandGroup {
     addCommands(new SwerveCoordinateCommand(driveSubsystem,new ArrayList<double[]>(Arrays.asList(new double[]{2d, 3d}))));
     addCommands(new SwerveCoordinateCommand(driveSubsystem, new ArrayList<double[]>(Arrays.asList(new double[]{-2d, 1d}))));
   }
-  public void quartercircle(DriveSubsystem driveSubsystem, double radius,int n, int direction)
-  {
-    for(int i = 0; i<n; i++)
-    {
-      addCommands(new SwerveCommand(driveSubsystem, direction*45, (0.5*Math.PI*radius+(2*Math.PI*radius/72))));
-      addCommands(new MoveByAngleCommand(driveSubsystem,direction*55));
+  public void quartercircle(DriveSubsystem driveSubsystem, double radius, int n, int direction) {
+    for(int i = 0; i<n; i++) {
+      addCommands(new SwerveCommand(driveSubsystem, direction * 45, (0.5 * Math.PI * radius + (2 * Math.PI * radius/72))));
+      addCommands(new MoveByAngleCommand(driveSubsystem, direction*55));
     }
   }
 }

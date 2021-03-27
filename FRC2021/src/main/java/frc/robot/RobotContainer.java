@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -30,9 +31,11 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   // Commands
   private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+  private final IntakeCommand intakeCommand = new IntakeCommand(intakeSubsystem);
   // private final BallFollowingCommand ballCommand = new BallFollowingCommand(driveSubsystem);
 
   // IO Devices
@@ -48,8 +51,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    driveSubsystem.setDefaultCommand(driveCommand);
-    
+    driveSubsystem.setDefaultCommand(driveCommand);    
   }
 
   /**
@@ -62,7 +64,8 @@ public class RobotContainer {
 
     JoystickButton ballTracker = new JoystickButton(joy1, 5);
     ballTracker.whileActiveContinuous(new BallFollowingCommand(driveSubsystem));
-
+    JoystickButton intake = new JoystickButton(joy1, 7);
+    intake.whenHeld(intakeCommand);
   }
 
   /**
@@ -72,12 +75,8 @@ public class RobotContainer {
    */ 
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    //return new PathACommand(this.driveSubsystem);
-    //return new PathBCommand(this.driveSubsystem);
-    //return new AutoNav(this.driveSubsystem);
-    //return new SwerveCommand(this.driveSubsystem, 45, Math.PI*0.5);
+    
     return new AutoNavPathA(this.driveSubsystem);
-    //return new SwerveCoordinateCommand(this.driveSubsystem, new ArrayList<double[]>(Arrays.asList(new double[]{-3d, 3d})));
 
   }
 

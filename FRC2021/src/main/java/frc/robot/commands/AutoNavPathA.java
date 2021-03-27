@@ -12,11 +12,11 @@ import frc.robot.subsystems.DriveSubsystem;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+
 public class AutoNavPathA extends SequentialCommandGroup {
+  
   /** Creates a new AutoNavPathA. */
   public AutoNavPathA(DriveSubsystem driveSubsystem) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
     double radius = 1.3;
     addCommands(new CoordinateFollowingCommand(driveSubsystem,new ArrayList<double[]>(Arrays.asList(new double[]{0d, 4.8d}))));
     quartercircle(driveSubsystem, radius, 4, 1);
@@ -26,10 +26,9 @@ public class AutoNavPathA extends SequentialCommandGroup {
     quartercircle(driveSubsystem, 1.05, 2, -1);
     addCommands(new CoordinateFollowingCommand(driveSubsystem,new ArrayList<double[]>(Arrays.asList(new double[]{0d, 10d}))));
   }
-  public void quartercircle(DriveSubsystem driveSubsystem, double radius,int n, int direction)
-  {
-    for(int i = 0; i<n; i++)
-    {
+
+  public void quartercircle(DriveSubsystem driveSubsystem, double radius,int n, int direction) {
+    for(int i = 0; i < n; i++) {
       addCommands(new SwerveCommand(driveSubsystem, direction*45, (0.5*Math.PI*radius+(2*Math.PI*radius/72))));
       addCommands(new MoveByAngleCommand(driveSubsystem,direction*55));
     }

@@ -34,11 +34,13 @@ public class BallFollowingCommand extends CommandBase {
     double radius = SmartDashboard.getNumber("Radius", Constants.MAX_RADIUS);
     this.angleError = ((Constants.CAM_WIDTH * 0.5d) - xCenter) * -1 * Constants.cameraScale;
     this.distanceError = (Constants.MAX_RADIUS - radius) * Constants.cameraScale * Constants.radiusScale;
+    
     //LIMELIGHT
     //this.angleError = SmartDashboard.getNumber("tx", 0.0d);
     //double radius = SmartDashboard.getNumber("tlong", Constants.MAX_RADIUS*2)/2;
     //this.distanceError = (Constants.MAX_RADIUS - radius) * Constants.cameraScale * Constants.radiusScale;
     //this.driveSubsystem.followBall(angleError, distanceError);
+    
     this.driveSubsystem.alignBall(this.angleError,this.distanceError);
   }
 

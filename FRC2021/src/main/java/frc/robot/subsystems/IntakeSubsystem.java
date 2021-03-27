@@ -9,13 +9,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ShooterSubsystem extends SubsystemBase {
+public class IntakeSubsystem extends SubsystemBase {
 
-private final WPI_TalonSRX shooter;
+private final WPI_TalonSRX intake;
 
   /** Creates a new ShooterSubsystem. */
-  public ShooterSubsystem() {
-    shooter = new WPI_TalonSRX(Constants.shooter_port);
+  public IntakeSubsystem() {
+    intake = new WPI_TalonSRX(Constants.intakePort);
   }
 
   @Override
@@ -23,7 +23,7 @@ private final WPI_TalonSRX shooter;
     // This method will be called once per scheduler run
   }
 
-  public void shoot(double y){
-    shooter.set(y);
+  public void intake(double y){
+    intake.set(y);
   }
 }

@@ -13,8 +13,6 @@ import frc.robot.subsystems.DriveSubsystem;
 public class AutoNavPathC extends SequentialCommandGroup {
   /** Creates a new AutoNavPathC. */
   public AutoNavPathC(DriveSubsystem driveSubsystem) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
     addCommands(new SwerveCoordinateCommand(driveSubsystem, new ArrayList<double[]>(Arrays.asList(new double[]{-2d, 2d}))));
     addCommands(new MoveByAngleCommand(driveSubsystem,180));
     addCommands(new SwerveCoordinateCommand(driveSubsystem,new ArrayList<double[]>(Arrays.asList(new double[]{-2d, 4d}))));
