@@ -4,21 +4,20 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class IntakeSubsystem extends SubsystemBase {
+public class ShooterSubsystem extends SubsystemBase {
 
-private final WPI_TalonSRX intake;
-private final WPI_VictorSPX kickup;
+  public WPI_VictorSPX shooter;
 
   /** Creates a new ShooterSubsystem. */
-  public IntakeSubsystem() {
-    intake = new WPI_TalonSRX(Constants.intakePort);
-    kickup = new WPI_VictorSPX(Constants.kickupPort);
+  public ShooterSubsystem() {
+    shooter = new WPI_VictorSPX(Constants.shooterPort);
   }
 
   @Override
@@ -26,11 +25,7 @@ private final WPI_VictorSPX kickup;
     // This method will be called once per scheduler run
   }
 
-  public void intake(double y){
-    intake.set(y);
-  }
-
-  public void kickup(double y){
-    kickup.set(y);
+  public void shooter2(double y){
+    shooter.set(y);
   }
 }

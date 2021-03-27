@@ -24,10 +24,16 @@ public final class Constants {
     public static final int BR_port = 4; 
     public static final int BL_port = 1;
     public static final int intakePort = 5;
+    public static final int kickupPort = 8;
+    public static final int shooterPort = 7;
 
     // General Constants
     public static double maxSpeed = 0.5d;
     public static double minSpeed = 0.12d;
+
+    public static double kickupSpeed = 0.4;
+    public static double shooterSpeed = 1;
+
     public static double deadband = 0.05d;
 
     // Scale Values
