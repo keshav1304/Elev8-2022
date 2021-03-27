@@ -25,7 +25,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void shooter2(double y){
+  public void shooter(double y){
     shooter.set(y);
   }
 }

@@ -28,8 +28,9 @@ public final class Constants {
     public static final int shooterPort = 7;
 
     // General Constants
-    public static double maxSpeed = 0.5d;
+    public static double maxSpeed = 0.8d;
     public static double minSpeed = 0.12d;
+    public static double shooterMaxSpeed = 1d;
 
     public static double kickupSpeed = 0.4;
     public static double shooterSpeed = 1;

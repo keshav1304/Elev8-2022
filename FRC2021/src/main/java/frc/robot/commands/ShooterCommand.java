@@ -29,14 +29,14 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void execute() { 
     double yaxis = RobotContainer.getY(RobotContainer.joy1, Constants.deadband); 
-    shooterSubsystem.shooter2(yaxis);
+    shooterSubsystem.shooter(yaxis * 0.6);
 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooterSubsystem.shooter2(0);
+    shooterSubsystem.shooter(0);
   }
 
   // Returns true when the command should end.
