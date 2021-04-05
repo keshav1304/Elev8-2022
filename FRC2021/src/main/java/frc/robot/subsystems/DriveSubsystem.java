@@ -116,9 +116,10 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void moveByAngle(double correction) {
-    if (Math.abs(correction) < Constants.minSpeed) correction = Math.signum(correction) * Constants.minSpeed;
-    if (Math.abs(correction) > Constants.maxSpeed) correction = Math.signum(correction) * Constants.maxSpeed;
-    drive(correction, -correction);
+    if (Math.abs(correction) < Constants.turnMinSpeed) correction = Math.signum(correction) * Constants.turnMinSpeed;
+    if (Math.abs(correction) > Constants.turnMaxSpeed) correction = Math.signum(correction) * Constants.turnMaxSpeed;
+    // drive(correction, -correction);
+    drive(-1, 1);
   }
 
   public void followBall(double angleCorrection, double distanceCorrection) {
