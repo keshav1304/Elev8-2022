@@ -11,13 +11,9 @@ import java.util.*;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.AutoNav.*;
-import frc.robot.commands.GalacticSearch.*;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -34,14 +30,9 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   // Commands
   private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
-  private final IntakeCommand intakeCommand = new IntakeCommand(intakeSubsystem);
-  private final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem);
-  private final KickupCommand kickupCommand = new KickupCommand(intakeSubsystem);
   // private final BallFollowingCommand ballCommand = new BallFollowingCommand(driveSubsystem);
 
   // IO Devices
@@ -59,7 +50,6 @@ public class RobotContainer {
     configureButtonBindings();
 
     driveSubsystem.setDefaultCommand(driveCommand); 
-    shooterSubsystem.setDefaultCommand(shooterCommand);   
     
   }
 
@@ -71,14 +61,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    JoystickButton ballTracker = new JoystickButton(joy2, 5);
-    ballTracker.whileActiveContinuous(new BallFollowingCommand(driveSubsystem));
-    JoystickButton intake = new JoystickButton(joy1, 2);
-    intake.whenHeld(intakeCommand);
-    JoystickButton kickup = new JoystickButton(joy1, 1);
-    kickup.whenHeld(kickupCommand);
-    // JoystickButton shooter2 = new JoystickButton(joy1, 6);
-    // shooter2.whenHeld(shooter2Command);
   }
 
   /**
