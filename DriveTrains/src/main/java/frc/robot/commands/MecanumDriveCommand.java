@@ -7,17 +7,17 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.MecanumDriveSubsystem;
 
-public class DriveCommand extends CommandBase {
+public class MecanumDriveCommand extends CommandBase {
 
-  DriveSubsystem driveSubsystem;
+  MecanumDriveSubsystem mecanumDriveSubsystem;
 
   /** Creates a new DriveCommand. */
-  public DriveCommand(DriveSubsystem driveSubsystem) {
-    this.driveSubsystem = driveSubsystem;
+  public MecanumDriveCommand(MecanumDriveSubsystem mecanumDriveSubsystem) {
+    this.mecanumDriveSubsystem = mecanumDriveSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(driveSubsystem);
+    addRequirements(mecanumDriveSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +29,7 @@ public class DriveCommand extends CommandBase {
   public void execute() {
     double yaxis = RobotContainer.getY(RobotContainer.joy2, Constants.deadband); 
     double zaxis = RobotContainer.getZ(RobotContainer.joy2, Constants.deadband); 
-    driveSubsystem.arcadeInbuilt(yaxis, zaxis);
+    mecanumDriveSubsystem.arcadeInbuilt(yaxis, 0.5, zaxis);
   }
 
   // Called once the command ends or is interrupted.

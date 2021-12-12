@@ -6,34 +6,35 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.MecanumDriveSubsystem;
 import frc.robot.Constants;
 
-public class MoveByAngleCommand extends CommandBase {
+public class MoveByDistanceCommand extends CommandBase {
 
-  DriveSubsystem driveSubsystem;
+  MecanumDriveSubsystem mecanumDriveSubsystem;
   double setpoint, error;
 
-  /** Creates a new MoveByAngleCommand. */
-  public MoveByAngleCommand(DriveSubsystem driveSubsystem, double setpoint) {
-    this.driveSubsystem = driveSubsystem;
+  /** Creates a new MoveByDistanceCommand. */
+  public MoveByDistanceCommand(MecanumDriveSubsystem mecanumDriveSubsystem, double setpoint) {
+    this.mecanumDriveSubsystem = mecanumDriveSubsystem;
     this.setpoint = setpoint;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(driveSubsystem);
+    addRequirements(mecanumDriveSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.navx.reset();
+    RobotContainer.encR.reset();
+    RobotContainer.encL.reset();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.error = this.setpoint - (RobotContainer.navx.getYaw() * Constants.navxScale);
-    double correction = this.error * 0.004;
-    this.driveSubsystem.moveByAngle(correction);
+    this.error = this.setpoint - ((this.mecanumDriveSubsystem.getAverageDistance()) * Constants.encoderScale);
+    double correction = this.error * 0.2;
+    this.mecanumDriveSubsystem.moveByDistance(correction);
   }
 
   // Called once the command ends or is interrupted.
@@ -43,6 +44,7 @@ public class MoveByAngleCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (Math.abs(this.error) <= Math.max(1.00d, (this.setpoint * Constants.deadband)));
+    //Math.abs(this.angleError) <= Constants.deadband && Math.abs(this.distanceError) <= Constants.deadband
+    return (Math.abs(this.error) <= Math.max(0.01d, (setpoint * Constants.deadband)));
   }
 }

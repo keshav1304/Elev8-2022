@@ -12,11 +12,12 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class DriveSubsystem extends SubsystemBase {
+public class MecanumDriveSubsystem extends SubsystemBase {
 
   private final WPI_TalonSRX FR;
   private final WPI_TalonSRX BR;
@@ -28,20 +29,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   private final DifferentialDrive driveTrain;
 
-  private double acceleration;
-  private double velocity;
-  private double displacement;
-  private double previousTime;
-  private Timer timer;
-
-  /** Creates a new DriveSubsystem. */
-  public DriveSubsystem() {
-
-    // timer = new Timer();
-    // resetIntegrals();
-    // timer.reset();
-    // timer.start();
-
+  /** Creates a new MecanumDriveSubsystem. */
+  public MecanumDriveSubsystem() {
     FR = new WPI_TalonSRX(Constants.FR_port);
     BR = new WPI_TalonSRX(Constants.BR_port);
     rightSide = new SpeedControllerGroup(FR, BR);
@@ -50,31 +39,19 @@ public class DriveSubsystem extends SubsystemBase {
     BL = new WPI_TalonSRX(Constants.BL_port); 
     leftSide = new SpeedControllerGroup(FL, BL);
     
-    driveTrain = new DifferentialDrive(leftSide, rightSide);
+    driveTrain = new MecanumDrive(FL, BL, FR, BR);
 
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    // updateDistance();
-
-    // SmartDashboard.putNumber("Displacement", this.displacement);
-    // SmartDashboard.putNumber("Velocity", this.velocity);
-    // SmartDashboard.putNumber("Acceleration", this.acceleration);
-
-    //SmartDashboard.putNumber("Nav X", RobotContainer.navx.getYaw());
-    //SmartDashboard.putNumber("Enc R", RobotContainer.encR.getDistance() * Constants.rightScale);
-    //SmartDashboard.putNumber("Enc L", RobotContainer.encL.getDistance());
     SmartDashboard.putNumber("Joy Y", RobotContainer.getY(RobotContainer.joy1, Constants.deadband));
     SmartDashboard.putNumber("Joy Z", RobotContainer.getY(RobotContainer.joy1, Constants.deadband));
 
   }
 
-  public void arcadeInbuilt(double y, double z) {
-    FR.setInverted(false);
-    BR.setInverted(false);
-    driveTrain.arcadeDrive(y * Constants.maxSpeed, z * Constants.maxSpeed);
+  public void arcadeInbuilt(double y, double x, double z) {
+    driveTrain.driveCartesian(y * Constants.maxSpeed, x * Constants.maxSpeed, z * Constants.maxSpeed);
   }
 
   public void brakeMode() {
@@ -155,20 +132,6 @@ public class DriveSubsystem extends SubsystemBase {
     if (Math.abs(correctionRight) > Constants.maxSpeed) correctionRight = Math.signum(correctionRight) * Constants.maxSpeed;
 
     drive(correctionLeft, correctionRight);
-  }
-
-  public void resetIntegrals() {
-    this.velocity = 0.0d;
-    this.displacement = 0.0d;
-  }
-
-  // Double Integral Function
-  public void updateDistance() {
-    double deltaTime = timer.get() - this.previousTime;
-    this.previousTime += deltaTime;
-    this.acceleration = RobotContainer.navx.getWorldLinearAccelX() * Constants.G;
-    this.velocity += this.acceleration * deltaTime;
-    this.displacement += this.velocity * deltaTime;
   }
 
 }

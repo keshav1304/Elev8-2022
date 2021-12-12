@@ -13,12 +13,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Encoder;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.MecanumDriveSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -29,10 +28,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final MecanumDriveSubsystem mecanumDriveSubsystem = new MecanumDriveSubsystem();
 
   // Commands
-  private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+  private final MecanumDriveCommand mecanumDriveCommand = new MecanumDriveCommand(mecanumDriveSubsystem);
   // private final BallFollowingCommand ballCommand = new BallFollowingCommand(driveSubsystem);
 
   // IO Devices
@@ -49,7 +48,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    driveSubsystem.setDefaultCommand(driveCommand); 
+    mecanumDriveSubsystem.setDefaultCommand(mecanumDriveCommand); 
     
   }
 
@@ -71,7 +70,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    return new MoveByAngleCommand(this.driveSubsystem, 1000);
+    return new MoveByAngleCommand(this.mecanumDriveSubsystem, 1000);
 
   }
 
