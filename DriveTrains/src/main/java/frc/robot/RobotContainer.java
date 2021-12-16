@@ -35,8 +35,7 @@ public class RobotContainer {
   // private final BallFollowingCommand ballCommand = new BallFollowingCommand(driveSubsystem);
 
   // IO Devices
-  public static Joystick joy1 = new Joystick(1);
-  public static Joystick joy2 = new Joystick(2);
+  public static Joystick joy1 = new Joystick(0);
 
   public static Encoder encR = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
   public static Encoder encL = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
@@ -82,6 +81,12 @@ public class RobotContainer {
 
   public static double getZ(Joystick joy, double deadband) {
     double value = joy.getZ();
+    if (Math.abs(value) < deadband) return 0;
+    return value;
+  }
+
+  public static double getX(Joystick joy, double deadband) {
+    double value = joy.getX();
     if (Math.abs(value) < deadband) return 0;
     return value;
   }

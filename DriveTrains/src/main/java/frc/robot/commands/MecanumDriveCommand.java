@@ -27,9 +27,10 @@ public class MecanumDriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double yaxis = RobotContainer.getY(RobotContainer.joy2, Constants.deadband); 
-    double zaxis = RobotContainer.getZ(RobotContainer.joy2, Constants.deadband); 
-    mecanumDriveSubsystem.arcadeInbuilt(yaxis, 0.5, zaxis);
+    double xaxis = RobotContainer.getX(RobotContainer.joy1, Constants.deadband); 
+    double yaxis = RobotContainer.getY(RobotContainer.joy1, Constants.deadband); 
+    double zaxis = RobotContainer.getZ(RobotContainer.joy1, Constants.deadband); 
+    mecanumDriveSubsystem.arcadeInbuilt(yaxis, xaxis, zaxis);
   }
 
   // Called once the command ends or is interrupted.

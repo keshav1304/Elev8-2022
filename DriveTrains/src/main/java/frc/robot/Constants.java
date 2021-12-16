@@ -19,13 +19,13 @@ import java.util.*;
 public final class Constants {
     
     // Motor Ports
-    public static final int FR_port = 3;
-    public static final int FL_port = 2;
-    public static final int BR_port = 4; 
-    public static final int BL_port = 1;
+    public static final int FR_port = 4;
+    public static final int FL_port = 1;
+    public static final int BR_port = 3; 
+    public static final int BL_port = 5;
 
     // General Constants
-    public static double maxSpeed = 0.8d;
+    public static double maxSpeed = 0.2d;
     public static double minSpeed = 0.12d;
 
     public static double turnMinSpeed = 0.3d;
