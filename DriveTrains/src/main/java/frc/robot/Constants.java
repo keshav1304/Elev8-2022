@@ -5,6 +5,9 @@
 package frc.robot;
 
 import java.util.*;
+import java.lang.Math;
+import edu.wpi.first.wpilibj.kinematics.MecanumDriveKinematics;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -19,13 +22,13 @@ import java.util.*;
 public final class Constants {
     
     // Motor Ports
-    public static final int FR_port = 4;
+    public static final int FR_port = 3;
     public static final int FL_port = 1;
-    public static final int BR_port = 3; 
+    public static final int BR_port = 4; 
     public static final int BL_port = 5;
 
     // General Constants
-    public static double maxSpeed = 0.2d;
+    public static double maxSpeed = 0.3d;
     public static double minSpeed = 0.12d;
 
     public static double turnMinSpeed = 0.3d;
@@ -45,4 +48,8 @@ public final class Constants {
     public static final double FIELD = 0.762d;
     public static final double CAM_WIDTH = 854;
     public static final double MAX_RADIUS = 100;
+
+    // Robot Dimensions
+    public static double wheelDiameter = 15.24;
+    public static double wheelCircumference = wheelDiameter * Math.PI;
 }

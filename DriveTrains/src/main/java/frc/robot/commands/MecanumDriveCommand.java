@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.MecanumDriveSubsystem;
+import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.kinematics.MecanumDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.MecanumDriveWheelSpeeds;
 
 public class MecanumDriveCommand extends CommandBase {
 
@@ -30,7 +33,20 @@ public class MecanumDriveCommand extends CommandBase {
     double xaxis = RobotContainer.getX(RobotContainer.joy1, Constants.deadband); 
     double yaxis = RobotContainer.getY(RobotContainer.joy1, Constants.deadband); 
     double zaxis = RobotContainer.getZ(RobotContainer.joy1, Constants.deadband); 
-    mecanumDriveSubsystem.arcadeInbuilt(yaxis, xaxis, zaxis);
+
+    // MecanumDriveKinematics kinematics = new MecanumDriveKinematics(mecanumDriveSubsystem.FLLocation, mecanumDriveSubsystem.FRLocation, mecanumDriveSubsystem.BLLocation, mecanumDriveSubsystem.BRLocation);
+
+    // ChassisSpeeds speeds = new ChassisSpeeds(yaxis, xaxis, zaxis);
+
+    // MecanumDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(speeds);
+
+    // // Get the individual wheel speeds
+    // double frontLeft = wheelSpeeds.frontLeftMetersPerSecond;
+    // double frontRight = wheelSpeeds.frontRightMetersPerSecond;
+    // double backLeft = wheelSpeeds.rearLeftMetersPerSecond;
+    // double backRight = wheelSpeeds.rearRightMetersPerSecond;
+
+    mecanumDriveSubsystem.mecanumArcade(yaxis, xaxis, zaxis);
   }
 
   // Called once the command ends or is interrupted.

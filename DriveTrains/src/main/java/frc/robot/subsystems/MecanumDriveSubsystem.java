@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
+import edu.wpi.first.wpilibj.kinematics.MecanumDriveKinematics;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
+
 public class MecanumDriveSubsystem extends SubsystemBase {
 
   private final WPI_TalonSRX FR;
@@ -22,7 +25,12 @@ public class MecanumDriveSubsystem extends SubsystemBase {
   private final WPI_TalonSRX FL;
   private final WPI_TalonSRX BL;  
 
-  private final MecanumDrive driveTrain;
+  private final MecanumDrive mecanumDriveTrain;
+
+  public Translation2d FLLocation;
+  public Translation2d FRLocation;
+  public Translation2d BLLocation;
+  public Translation2d BRLocation;
 
   /** Creates a new MecanumDriveSubsystem. */
   public MecanumDriveSubsystem() {
@@ -31,10 +39,13 @@ public class MecanumDriveSubsystem extends SubsystemBase {
     
     FL = new WPI_TalonSRX(Constants.FL_port);
     BL = new WPI_TalonSRX(Constants.BL_port); 
-    FL.setInverted(true);
-    // BL.setInverted(true);
+
+    // Translation2d FLLocation = new Translation2d(0.381, 0.381);
+    // Translation2d FRLocation = new Translation2d(0.381, -0.381);
+    // Translation2d BLLocation = new Translation2d(-0.381, 0.381);
+    // Translation2d BRLocation = new Translation2d(-0.381, -0.381);
     
-    driveTrain = new MecanumDrive(FL, BL, FR, BR);
+    mecanumDriveTrain = new MecanumDrive(FL, BL, FR, BR);
 
   }
 
@@ -45,8 +56,8 @@ public class MecanumDriveSubsystem extends SubsystemBase {
 
   }
 
-  public void arcadeInbuilt(double y, double x, double z) {
-    driveTrain.driveCartesian(y * Constants.maxSpeed, x * Constants.maxSpeed, z * Constants.maxSpeed);
+  public void mecanumArcade(double y, double x, double z) {
+    mecanumDriveTrain.driveCartesian(x * Constants.maxSpeed, y * Constants.maxSpeed, z * Constants.maxSpeed);
   }
 
   public void brakeMode() {
@@ -64,9 +75,6 @@ public class MecanumDriveSubsystem extends SubsystemBase {
   }
 
   public void drive(double l, double r) {
-    FR.setInverted(true);
-    BR.setInverted(true);
-
     FR.set(r);
     BR.set(r);
     FL.set(l);
